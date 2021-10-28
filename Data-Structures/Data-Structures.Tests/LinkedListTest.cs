@@ -94,6 +94,28 @@ namespace DataStructures.Tests
                 Assert.Equal(values[index], lst[index + 1]);
         }
 
+        [Fact]
+        public void InsertEmpty()
+        {
+            var lst = new LinkedList<int>();
+            lst.Insert(0, 1);
+            Assert.Collection(lst, x => Assert.Equal(1, x));
+        }
+
+        [Fact]
+        public void InsertEmptyOutOfRange()
+        {
+            var lst = new LinkedList<int>();
+            Assert.Throws<IndexOutOfRangeException>(() => lst.Insert(1, 1));
+        }
+
+        [Fact]
+        public void InsertOutOfRange()
+        {
+            var lst = new LinkedList<int>(new[] { 1, 2, 3 });
+            Assert.Throws<IndexOutOfRangeException>(() => lst.Insert(5, 1));
+        }
+
         [Theory]
         [InlineData(1, 1)]
         [InlineData(3, 1, 3, 2)]
